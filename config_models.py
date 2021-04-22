@@ -136,12 +136,13 @@ def return_models(city):
 
 # almeria, bordeaux, hull, rovaniemi, ulm
 cities = ['ulm', 'almeria', 'hull', 'rovaniemi']
-models = return_models('ulm')
+# models = return_models('ulm')
 # models = [rovaniemi, rovaniemi1]
 # models = [almeria, bordeaux, hull, rovaniemi, ulm]
 # models = [ulm, ulm1, ulm2]
 # models = [almeria, almeria1]
 # models = [lstm, conv, conv_lstm, lstm_conv]
+models = [bordeaux]
 # models = [bordeaux, bordeaux1]
 # models = [hull, hull1]
 # models = [ulm, ulm1, almeria, almeria1, bordeaux, bordeaux1, hull, hull1, rovaniemi, rovaniemi1]

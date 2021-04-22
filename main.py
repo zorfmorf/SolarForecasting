@@ -26,7 +26,8 @@ def main():
 
 def prepare_models(models):
     for model in models:
-        df = pd.read_pickle('data/pickles/' + model['city'] + '.pickle')
+        #df = pd.read_pickle('data/pickles/' + model['city'] + '.pickle')
+        df = pd.read_excel('data/Bordeaux.xlsx',sheet_name='Tabelle1')
         train, val, test, num_features, date_time, column_indices = \
             pp.preprocess(df, model['fields'], city=model['city'], time=True)
         model['train'] = train

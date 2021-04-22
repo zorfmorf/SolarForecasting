@@ -18,8 +18,10 @@ data = dict(
 )
 
 fields = dict(
-        loadedfields=['date', 'temp', 'glo', 'maxIncoming', 'difference', 'maxInc_dayAhead',
-                      'humidity', 'pressure', 'wind_speed', 'rainfall'],
+        loadedfields=['Date', 'Temperature', 'Global Irradiation', 'Max incomming solar irradiation',
+                      'Humidity', 'Pressure', 'Wind Speed', 'Rainfall'],
+        # loadedfields=['date', 'temp', 'glo', 'maxIncoming', 'difference', 'maxInc_dayAhead',
+        #              'humidity', 'pressure', 'wind_speed', 'rainfall'],
         # Input
         # usedfields=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
         #             'temp', 'pressure', 'wind_speed', 'rainfall',
@@ -30,7 +32,10 @@ fields = dict(
         # usedfields2=['glo',
         #              'temp', 'pressure', 'wind_speed', 'rainfall',
         #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
-        usedfields=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
+        usedfields=['Global Irradiation', 'Max incomming solar irradiation',
+                    'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
+                    'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        usedfields11=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
                     'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
                     'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         usedfields1=['glo', 'maxIncoming', 'difference',
@@ -43,7 +48,7 @@ fields = dict(
                      'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         )
 
-label = 'glo'
+label = 'Global Irradiation'#'glo'
 
 training = dict(
     max_epochs=200,
