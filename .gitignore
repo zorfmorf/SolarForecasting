@@ -3,3 +3,4 @@ data/
 saver/
 test_main.py
 .idea
+venv/
