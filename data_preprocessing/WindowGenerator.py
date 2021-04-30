@@ -158,6 +158,14 @@ class WindowGenerator:
         # mae = mean_absolute_error(label, pred, multioutput='raw_values')
         return rmse, mae, skewness
 
+    def update_mae(self, model, mae):
+        #if (np.amax(mae)>1):
+        mae += model['mae']
+        #    mae /= 2
+        #else:
+        #    mae += model['mae']
+        return mae
+
     def make_dataset(self, data):
         data = np.array(data, dtype=np.float32)
         ds = tf.keras.preprocessing.timeseries_dataset_from_array(

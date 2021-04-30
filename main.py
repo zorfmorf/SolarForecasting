@@ -6,7 +6,7 @@ import config as cfg
 import config_models as cfg_mod
 import visualization.plotting as plotting
 
-# import numpy as np
+import numpy as np
 import pandas as pd
 import pickle
 
@@ -46,19 +46,26 @@ def prepare_models(models):
                                           shift=cfg.prediction['num_predictions'],
                                           label_columns=[cfg.label],
                                           )
-        model['model'] = tm.build_model(tm.choose_model(model), model['window'],
+        mae = np.zeros(24)
+        iterate = 15
+        for i in range(iterate):
+            print(i+1)
+            model['model'] = tm.build_model(tm.choose_model(model), model['window'],
                                         './checkpoints/' + model['city'] + '/' + model['type'] + '_' +
                                         model['city'] + model.get('number', ''),
                                         train=model['train_bool'])
-        if model.get('baseline'):
-            model['baseline']['model'] = tm.build_model(tm.choose_model(model['baseline']), model['window'],
+            if model.get('baseline'):
+                model['baseline']['model'] = tm.build_model(tm.choose_model(model['baseline']), model['window'],
                                                         './checkpoints/' + model['city'] + '/' + model['type'] + '_' +
                                                         model['city'] + model.get('number', ''),
                                                         train=model['train_bool'])
-            model['baseline']['rmse'], model['baseline']['mae'], model['baseline']['skewness'] = \
-                model['window'].get_metrics(model['baseline']['model'], model['scaler'], model['city'])
-        model['rmse'], model['mae'], model['skewness'] = \
-            model['window'].get_metrics(model['model'], model['scaler'], model['city'])
+                model['baseline']['rmse'], model['baseline']['mae'], model['baseline']['skewness'] = \
+                    model['window'].get_metrics(model['baseline']['model'], model['scaler'], model['city'])
+            model['rmse'], model['mae'], model['skewness'] = \
+                model['window'].get_metrics(model['model'], model['scaler'], model['city'])
+            mae = model['window'].update_mae(model, mae)
+        mae = mae / iterate
+        model['mae'] = mae
     return models
 
 
