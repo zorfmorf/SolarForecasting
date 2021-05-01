@@ -5,6 +5,7 @@ import models.train_model as tm
 import config as cfg
 import config_models as cfg_mod
 import visualization.plotting as plotting
+import tensorflow as tf
 
 import numpy as np
 import pandas as pd
@@ -12,13 +13,17 @@ import pickle
 
 
 def main():
+    print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
     models = prepare_models(cfg_mod.models)
     # print_metrics(models)
     # plotting.multi_plot(cfg_mod.cities, cfg.errors['metric'])
     ################ Plot RMSE ###################
     # plotting.plot_metric(models, 'skewness').show()
     # plotting.plot_metric(models, 'rmse').show()
-    plotting.plot_metric(models, 'mae').show()
+    plot = plotting.plot_metric(models, 'mae')
+    plot.savefig('output.png')
+    plot.show()
     # plotting.multi_plot_days(models, cfg.plotting['days'])
     # for day in cfg.plotting['days']:
     #     plotting.plot_forecast(models, day.year, day.month, day.day, day.hour).show()
