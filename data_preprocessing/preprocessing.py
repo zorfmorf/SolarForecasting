@@ -20,20 +20,17 @@ def preprocess(df, columns, city='', time=True):
 
 
 def change_date(df):
+
+    # Problem: date_time only contains dd.mm.yyyy but code expects also hours, minutes, seconds
     date_time = pd.to_datetime(df.pop('Date'), format='%d.%m.%Y')# %H:%M:%S')
     timestamp_s = date_time.map(datetime.datetime.timestamp)
     day = 24 #* 60 * 60
     year = 365.2425 * day
 
-    hours_of_day = df['Hour']
-    hours_of_year = df['Hour']
-    for i in range(date_time.size):
-        hours_of_year[i] += (date_time[i].dayofyear - 1) * 24
-
-    df['Day sin'] = np.sin(hours_of_day * (2 * np.pi / day))
-    df['Day cos'] = np.cos(hours_of_day * (2 * np.pi / day))
-    df['Year sin'] = np.sin(hours_of_year * (2 * np.pi / year))
-    df['Year cos'] = np.cos(hours_of_year * (2 * np.pi / year))
+    df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
+    df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
+    df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
+    df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
     return df, list(date_time)
 
 
