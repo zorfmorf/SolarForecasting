@@ -34,6 +34,23 @@ bordeaux = {
     # 'baseline': {'type': 'naive'},
     'plotting': {'marker': '*', 'linestyle': '-'},
 }
+
+bordeaux_w_sin = {
+    'name': 'bordeaux_w_sin', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_w_sin'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_kart = {
+    'name': 'bordeaux_kart', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_kart'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
 bordeaux1 = {
     'name': 'Bordeaux_wo_MSI_DayAhead', 'city': 'bordeaux', 'type': 'lstm', 'number': '1',
     'fields': cfg.fields['usedfields1'],
@@ -142,7 +159,8 @@ cities = ['ulm', 'almeria', 'hull', 'rovaniemi']
 # models = [ulm, ulm1, ulm2]
 # models = [almeria, almeria1]
 # models = [lstm, conv, conv_lstm, lstm_conv]
-models = [bordeaux]
+models = [bordeaux, bordeaux_w_sin, bordeaux_kart]
+# models = [bordeaux_kart]
 # models = [bordeaux, bordeaux1]
 # models = [hull, hull1]
 # models = [ulm, ulm1, almeria, almeria1, bordeaux, bordeaux1, hull, hull1, rovaniemi, rovaniemi1]

@@ -19,7 +19,7 @@ data = dict(
 
 fields = dict(
         loadedfields=['Date', 'Temperature', 'Global Irradiation', 'Max incomming solar irradiation',
-                      'Humidity', 'Pressure', 'Wind Speed', 'Rainfall'],
+                      'Humidity', 'Pressure', 'Wind Speed', 'Rainfall', 'Wind Direction'],
         # loadedfields=['date', 'temp', 'glo', 'maxIncoming', 'difference', 'maxInc_dayAhead',
         #              'humidity', 'pressure', 'wind_speed', 'rainfall'],
         # Input
@@ -34,7 +34,13 @@ fields = dict(
         #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         usedfields=['Global Irradiation', 'Max incomming solar irradiation',
                     'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind Direction'],
+        usedfields_w_sin=['Global Irradiation', 'Max incomming solar irradiation',
+                    'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
+                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind sin', 'Wind cos'],
+        usedfields_kart=['Global Irradiation', 'Max incomming solar irradiation',
+                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind x', 'Wind y'],
         usedfields11=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
                     'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
                     'Day sin', 'Day cos', 'Year sin', 'Year cos'],

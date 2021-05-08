@@ -27,10 +27,15 @@ def change_date(df):
     day = 24 #* 60 * 60
     year = 365.2425 * day
 
-    df['Day sin'] = np.sin(timestamp_s * (2 * np.pi / day))
-    df['Day cos'] = np.cos(timestamp_s * (2 * np.pi / day))
-    df['Year sin'] = np.sin(timestamp_s * (2 * np.pi / year))
-    df['Year cos'] = np.cos(timestamp_s * (2 * np.pi / year))
+    hours_of_day = df['Hour']
+    hours_of_year = df['Hour']
+    for i in range(date_time.size):
+        hours_of_year[i] += (date_time[i].dayofyear - 1) * 24
+
+    df['Day sin'] = np.sin(hours_of_day * (2 * np.pi / day))
+    df['Day cos'] = np.cos(hours_of_day * (2 * np.pi / day))
+    df['Year sin'] = np.sin(hours_of_year * (2 * np.pi / year))
+    df['Year cos'] = np.cos(hours_of_year * (2 * np.pi / year))
     return df, list(date_time)
 
 
@@ -51,3 +56,16 @@ def scale_data(df, filepath, columns):
     scaler_all = MinMaxScaler(feature_range=(0, 1))
     df = pd.DataFrame(scaler_all.fit_transform(df[columns]), columns=columns)
     return df
+
+
+def change_wind_sin(df):
+    df['Wind sin'] = np.sin(df['Wind Direction'] * (2 * np.pi / 360))
+    df['Wind cos'] = np.cos(df['Wind Direction'] * (2 * np.pi / 360))
+    return df
+
+
+def change_wind_kart(df):
+    df['Wind x'] = df['Wind Speed'] * np.cos(df['Wind Direction'] * np.pi / 180)
+    df['Wind y'] = df['Wind Speed'] * np.sin(df['Wind Direction'] * np.pi / 180)
+    return df
+

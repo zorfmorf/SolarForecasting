@@ -33,8 +33,14 @@ def prepare_models(models):
     for model in models:
         #df = pd.read_pickle('data/pickles/' + model['city'] + '.pickle')
         df = pd.read_excel('data/Bordeaux.xlsx',sheet_name='Tabelle1')
+        if model['fields'][11] == 'Wind sin':
+            df = pp.change_wind_sin(df)
+
+        if model['fields'][10] == 'Wind x':
+            df = pp.change_wind_kart(df)
         train, val, test, num_features, date_time, column_indices = \
             pp.preprocess(df, model['fields'], city=model['city'], time=True)
+
         model['train'] = train
         model['val'] = val
         model['test'] = test
