@@ -33,11 +33,20 @@ def prepare_models(models):
     for model in models:
         #df = pd.read_pickle('data/pickles/' + model['city'] + '.pickle')
         df = pd.read_excel('data/Bordeaux.xlsx',sheet_name='Tabelle1')
-        if model['fields'][11] == 'Wind sin':
+        if 'Wind sin' in model['fields']:
             df = pp.change_wind_sin(df)
 
-        if model['fields'][10] == 'Wind x':
+        if 'Wind x' in model['fields']:
             df = pp.change_wind_kart(df)
+
+        if 'weekday' in model['fields'] or 'weekday sin' in model['fields'] or 'weekday x' in model['fields']:
+            df = pp.add_weekday(df)
+
+        if 'weekday sin' in model['fields']:
+            df = pp.add_weekday_sin(df)
+
+        if 'weekday x' in model['fields']:
+            df = pp.add_weekday_kart(df)
         train, val, test, num_features, date_time, column_indices = \
             pp.preprocess(df, model['fields'], city=model['city'], time=True)
 
@@ -58,7 +67,7 @@ def prepare_models(models):
                                           label_columns=[cfg.label],
                                           )
         mae = np.zeros(24)
-        iterate = 15
+        iterate = 30
         for i in range(iterate):
             print(i+1)
             model['model'] = tm.build_model(tm.choose_model(model), model['window'],

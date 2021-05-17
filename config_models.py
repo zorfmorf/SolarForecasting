@@ -51,6 +51,70 @@ bordeaux_kart = {
     'plotting': {'marker': '*', 'linestyle': '-'},
 }
 
+bordeaux_ohne_wind = {
+    'name': 'bordeaux_ohne_wind', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_ohne_wind'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_sin_kart = {
+    'name': 'bordeaux_sin_kart', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_sin_kart'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_rad_sin_kart = {
+    'name': 'bordeaux_rad_sin_kart', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_rad_sin_kart'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_rad_kart = {
+    'name': 'bordeaux_rad_kart', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_rad_kart'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_rad_sin = {
+    'name': 'bordeaux_rad_sin', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_rad_sin'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_weekday = {
+    'name': 'bordeaux_weekday', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_weekday'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_weekday_sin = {
+    'name': 'bordeaux_weekday_sin', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_weekday_sin'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
+bordeaux_weekday_kart = {
+    'name': 'bordeaux_weekday_kart', 'city': 'bordeaux', 'type': 'lstm',
+    'fields': cfg.fields['usedfields_weekday_kart'],
+    'train_bool': True,
+    # 'baseline': {'type': 'naive'},
+    'plotting': {'marker': '*', 'linestyle': '-'},
+}
+
 bordeaux1 = {
     'name': 'Bordeaux_wo_MSI_DayAhead', 'city': 'bordeaux', 'type': 'lstm', 'number': '1',
     'fields': cfg.fields['usedfields1'],
@@ -160,7 +224,8 @@ cities = ['ulm', 'almeria', 'hull', 'rovaniemi']
 # models = [almeria, almeria1]
 # models = [lstm, conv, conv_lstm, lstm_conv]
 models = [bordeaux, bordeaux_w_sin, bordeaux_kart]
-# models = [bordeaux_kart]
+models = [bordeaux, bordeaux_sin_kart, bordeaux_rad_sin_kart, bordeaux_rad_kart, bordeaux_rad_sin]
+models = [bordeaux_ohne_wind, bordeaux_weekday, bordeaux_weekday_sin, bordeaux_weekday_kart]
 # models = [bordeaux, bordeaux1]
 # models = [hull, hull1]
 # models = [ulm, ulm1, almeria, almeria1, bordeaux, bordeaux1, hull, hull1, rovaniemi, rovaniemi1]

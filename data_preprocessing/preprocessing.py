@@ -69,3 +69,28 @@ def change_wind_kart(df):
     df['Wind y'] = df['Wind Speed'] * np.sin(df['Wind Direction'] * np.pi / 180)
     return df
 
+
+def add_weekday(df):
+    #date_time = pd.to_datetime(df.pop('Date'), format='%d.%m.%Y')
+    weekday = df['Hour']
+    weekday[0] = df['Date'][0].weekday()
+    wd = weekday[0]
+    for i in range(df['Hour'].size-1):
+        if df['Hour'][i+1] == 1:
+            wd = (wd + 1) % 7
+        weekday[i+1] = wd  # weekday[i - (i % 24)]
+
+    df['weekday'] = weekday
+    return df
+
+
+def add_weekday_sin(df):
+    df['weekday sin'] = np.sin(df['weekday'] * (2 * np.pi / 7))
+    df['weekday cos'] = np.cos(df['weekday'] * (2 * np.pi / 7))
+    return df
+
+
+def add_weekday_kart(df):
+    df['weekday x'] = np.cos(df['weekday'] * 2 * np.pi / 7)
+    df['weekday y'] = np.sin(df['weekday'] * 2 * np.pi / 7)
+    return df
