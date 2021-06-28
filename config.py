@@ -16,7 +16,32 @@ data = dict(
         test_data_size=8760,  # 24*365=8760,
         train_data_perc=0.8,
 )
+usedfields = ['Global Irradiation', 'Max incomming solar irradiation',
+                    'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
+                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind Direction']
+#usedfields = ['Global Irradiation',
+#                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind Direction']
+usedfields_w_sin = usedfields.copy()
+usedfields_w_sin.append('Wind sin')
+usedfields_w_sin.append('Wind cos')
 
+usedfields_kart = usedfields.copy()
+usedfields_kart.append('Wind x')
+usedfields_kart.append('Wind y')
+
+usedfields_ohne_wind = usedfields.copy()
+usedfields_ohne_wind.remove('Wind Direction')
+
+usedfields_weekday = usedfields_ohne_wind.copy()
+usedfields_weekday.append('weekday')
+
+usedfields_weekday_sin = usedfields_ohne_wind.copy()
+usedfields_weekday_sin.append('weekday sin')
+usedfields_weekday_sin.append('weekday cos')
+
+usedfields_weekday_kart = usedfields_ohne_wind.copy()
+usedfields_weekday_kart.append('weekday x')
+usedfields_weekday_kart.append('weekday y')
 fields = dict(
         loadedfields=['Date', 'Temperature', 'Global Irradiation', 'Max incomming solar irradiation',
                       'Humidity', 'Pressure', 'Wind Speed', 'Rainfall', 'Wind Direction'],
@@ -32,18 +57,18 @@ fields = dict(
         # usedfields2=['glo',
         #              'temp', 'pressure', 'wind_speed', 'rainfall',
         #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
-        usedfields=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind Direction'],
-        usedfields_w_sin=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind sin', 'Wind cos'],
-        usedfields_kart=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind x', 'Wind y'],
-        usedfields_ohne_wind=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        usedfields=usedfields.copy(), # ['Global Irradiation', 'Max incomming solar irradiation',
+                    # 'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
+                    # 'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind Direction'],
+        usedfields_w_sin=usedfields_w_sin.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    #'Temperature', 'Humidity', 'Pressure', 'Wind Speed', 'Rainfall',
+                    #'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind sin', 'Wind cos'],
+        usedfields_kart=usedfields_kart.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    # 'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    # 'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind x', 'Wind y'],
+        usedfields_ohne_wind=usedfields_ohne_wind.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    #'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    #'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         usedfields_sin_kart=['Global Irradiation', 'Max incomming solar irradiation',
                     'Temperature', 'Humidity', 'Pressure', 'Rainfall',
                     'Day sin', 'Day cos', 'Year sin', 'Year cos', 'Wind sin', 'Wind cos', 'Wind x', 'Wind y'],
@@ -59,29 +84,29 @@ fields = dict(
                     'Temperature', 'Humidity', 'Pressure', 'Rainfall',
                     'Day sin', 'Day cos', 'Year sin', 'Year cos',
                     'Wind x', 'Wind y', 'Wind Direction'],
-        usedfields_weekday=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday'],
-        usedfields_weekday_sin=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday sin', 'weekday cos'],
-        usedfields_weekday_kart=['Global Irradiation', 'Max incomming solar irradiation',
-                    'Temperature', 'Humidity', 'Pressure', 'Rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday x', 'weekday y'],
-        usedfields11=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
-                    'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
-                    'Day sin', 'Day cos', 'Year sin', 'Year cos'],
-        usedfields1=['glo', 'maxIncoming', 'difference',
-                     'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
-                     'Day sin', 'Day cos', 'Year sin', 'Year cos'],
-        usedfields2=['glo',
-                     'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
-                     'Day sin', 'Day cos', 'Year sin', 'Year cos'],
-        usedfields3=['glo',
-                     'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        usedfields_weekday=usedfields_weekday.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    #'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    #'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday'],
+        usedfields_weekday_sin=usedfields_weekday_sin.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    #'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    #'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday sin', 'weekday cos'],
+        usedfields_weekday_kart=usedfields_weekday_kart.copy(),#['Global Irradiation', 'Max incomming solar irradiation',
+                    #'Temperature', 'Humidity', 'Pressure', 'Rainfall',
+                    #'Day sin', 'Day cos', 'Year sin', 'Year cos', 'weekday x', 'weekday y'],
+        # usedfields11=['glo', 'maxIncoming', 'maxInc_dayAhead', 'difference',
+        #             'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
+        #             'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        # usedfields1=['glo', 'maxIncoming', 'difference',
+        #              'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
+        #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        # usedfields2=['glo',
+        #              'temp', 'humidity', 'pressure', 'wind_speed', 'rainfall',
+        #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
+        # usedfields3=['glo',
+        #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         )
 
-label = 'Global Irradiation'#'glo'
+label = 'Temperature'#'Global Irradiation'#'glo'
 
 training = dict(
     max_epochs=200,

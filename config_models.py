@@ -13,20 +13,51 @@ import config as cfg
 #     'baseline': {'type'}
 # }
 
-almeria = {
-        'name': 'Almeria', 'city': 'almeria', 'type': 'lstm',
-        'fields': cfg.fields['usedfields'],
-        'train_bool': True,
-        'plotting': {'marker': '*', 'linestyle': '-'},
-        # 'baseline': {'type': 'naive'},
-}
-almeria1 = {
-    'name': 'Almeria_wo_MSI_DayAhead', 'city': 'almeria', 'type': 'lstm', 'number': '1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': True,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '^', 'linestyle': '-'}
-}
+# almeria = {
+#         'name': 'Almeria', 'city': 'almeria', 'type': 'lstm',
+#         'fields': cfg.fields['usedfields'],
+#         'train_bool': True,
+#         'plotting': {'marker': '*', 'linestyle': '-'},
+#         # 'baseline': {'type': 'naive'},
+# }
+# almeria1 = {
+#     'name': 'Almeria_wo_MSI_DayAhead', 'city': 'almeria', 'type': 'lstm', 'number': '1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': True,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '^', 'linestyle': '-'}
+# }
+model_alg = {'name': 'bordeaux'}
+model_alg['city'] = model_alg['name']
+model_alg['type'] = 'lstm'
+model_alg['fields'] = cfg.fields['usedfields']
+model_alg['train_bool'] = True
+model_alg['plotting'] = {'marker': '*', 'linestyle': '-'}
+
+model_w_sin = model_alg.copy()
+model_w_sin['name'] += '_w_sin'
+model_w_sin['fields'] = cfg.fields['usedfields_w_sin']
+
+model_w_kart = model_alg.copy()
+model_w_kart['name'] += '_w_kart'
+model_w_kart['fields'] = cfg.fields['usedfields_kart']
+
+model_o_w = model_alg.copy()
+model_o_w['name'] += '_o_w'
+model_o_w['fields'] = cfg.fields['usedfields_ohne_wind']
+
+model_weekday = model_alg.copy()
+model_weekday['name'] += '_weekday'
+model_weekday['fields'] = cfg.fields['usedfields_weekday']
+
+model_weekday_sin = model_alg.copy()
+model_weekday_sin['name'] += '_weekday_sin'
+model_weekday_sin['fields'] = cfg.fields['usedfields_weekday_sin']
+
+model_weekday_kart = model_alg.copy()
+model_weekday_kart['name'] += '_weekday_kart'
+model_weekday_kart['fields'] = cfg.fields['usedfields_weekday_kart']
+
 bordeaux = {
     'name': 'bordeaux', 'city': 'bordeaux', 'type': 'lstm',
     'fields': cfg.fields['usedfields'],
@@ -115,72 +146,72 @@ bordeaux_weekday_kart = {
     'plotting': {'marker': '*', 'linestyle': '-'},
 }
 
-bordeaux1 = {
-    'name': 'Bordeaux_wo_MSI_DayAhead', 'city': 'bordeaux', 'type': 'lstm', 'number': '1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': True,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '^', 'linestyle': '-'}
-}
+# bordeaux1 = {
+#     'name': 'Bordeaux_wo_MSI_DayAhead', 'city': 'bordeaux', 'type': 'lstm', 'number': '1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': True,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '^', 'linestyle': '-'}
+# }
 
-hull = {
-    'name': 'hull', 'city': 'hull', 'type': 'lstm',
-    'fields': cfg.fields['usedfields'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '*', 'linestyle': '-'},
-}
-hull1 = {
-    'name': 'Hull_wo_MSI_DayAhead', 'city': 'hull', 'type': 'lstm', 'number': '1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '^', 'linestyle': '-'}
-}
-
-rovaniemi = {
-    'name': 'Rovaniemi LSTMconv', 'city': 'rovaniemi', 'type': 'lstm_conv', 'number': '1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '*', 'linestyle': '-'},
-}
-rovaniemi1 = {
-    'name': 'Rovaniemi LSTM', 'city': 'rovaniemi', 'type': 'lstm', 'number': '1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '^', 'linestyle': '-'}
-}
-
-ulm = {
-    'name': 'Ulm_convolutional', 'city': 'ulm', 'type': 'convolutional', 'number': '',
-    'fields': cfg.fields['usedfields'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '*', 'linestyle': '-'}
-}
-ulm1 = {
-    'name': 'Ulm_convolutional1', 'city': 'ulm', 'type': 'convolutional', 'number': '_test1',
-    'fields': cfg.fields['usedfields1'],
-    'train_bool': True,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': '^', 'linestyle': '-'}
-}
-ulm2 = {
-    'name': 'Ulm_convolutional2', 'city': 'ulm', 'type': 'convolutional', 'number': '2',
-    'fields': cfg.fields['usedfields2'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': 'x', 'linestyle': '-'}
-}
-ulm3 = {
-    'name': 'Ulm_lstm_conv3', 'city': 'ulm', 'type': 'lstm_conv', 'number': '_test3',
-    'fields': cfg.fields['usedfields3'],
-    'train_bool': False,
-    # 'baseline': {'type': 'naive'},
-    'plotting': {'marker': 'd', 'linestyle': '-'}
-}
+# hull = {
+#     'name': 'hull', 'city': 'hull', 'type': 'lstm',
+#     'fields': cfg.fields['usedfields'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '*', 'linestyle': '-'},
+# }
+# hull1 = {
+#     'name': 'Hull_wo_MSI_DayAhead', 'city': 'hull', 'type': 'lstm', 'number': '1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '^', 'linestyle': '-'}
+# }
+#
+# rovaniemi = {
+#     'name': 'Rovaniemi LSTMconv', 'city': 'rovaniemi', 'type': 'lstm_conv', 'number': '1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '*', 'linestyle': '-'},
+# }
+# rovaniemi1 = {
+#     'name': 'Rovaniemi LSTM', 'city': 'rovaniemi', 'type': 'lstm', 'number': '1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '^', 'linestyle': '-'}
+# }
+#
+# ulm = {
+#     'name': 'Ulm_convolutional', 'city': 'ulm', 'type': 'convolutional', 'number': '',
+#     'fields': cfg.fields['usedfields'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '*', 'linestyle': '-'}
+# }
+# ulm1 = {
+#     'name': 'Ulm_convolutional1', 'city': 'ulm', 'type': 'convolutional', 'number': '_test1',
+#     'fields': cfg.fields['usedfields1'],
+#     'train_bool': True,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': '^', 'linestyle': '-'}
+# }
+# ulm2 = {
+#     'name': 'Ulm_convolutional2', 'city': 'ulm', 'type': 'convolutional', 'number': '2',
+#     'fields': cfg.fields['usedfields2'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': 'x', 'linestyle': '-'}
+# }
+# ulm3 = {
+#     'name': 'Ulm_lstm_conv3', 'city': 'ulm', 'type': 'lstm_conv', 'number': '_test3',
+#     'fields': cfg.fields['usedfields3'],
+#     'train_bool': False,
+#     # 'baseline': {'type': 'naive'},
+#     'plotting': {'marker': 'd', 'linestyle': '-'}
+# }
 
 
 def return_models(city):
@@ -223,9 +254,11 @@ cities = ['ulm', 'almeria', 'hull', 'rovaniemi']
 # models = [ulm, ulm1, ulm2]
 # models = [almeria, almeria1]
 # models = [lstm, conv, conv_lstm, lstm_conv]
-models = [bordeaux, bordeaux_w_sin, bordeaux_kart]
-models = [bordeaux, bordeaux_sin_kart, bordeaux_rad_sin_kart, bordeaux_rad_kart, bordeaux_rad_sin]
-models = [bordeaux_ohne_wind, bordeaux_weekday, bordeaux_weekday_sin, bordeaux_weekday_kart]
+# models = [bordeaux, bordeaux_w_sin, bordeaux_kart]
+# models = [bordeaux, bordeaux_sin_kart, bordeaux_rad_sin_kart, bordeaux_rad_kart, bordeaux_rad_sin]
+# models = [bordeaux_ohne_wind, bordeaux_weekday, bordeaux_weekday_sin, bordeaux_weekday_kart]
+models = [model_alg, model_w_sin, model_w_kart]
+#models = [model_o_w, model_weekday, model_weekday_sin, model_weekday_kart]
 # models = [bordeaux, bordeaux1]
 # models = [hull, hull1]
 # models = [ulm, ulm1, almeria, almeria1, bordeaux, bordeaux1, hull, hull1, rovaniemi, rovaniemi1]

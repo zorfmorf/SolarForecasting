@@ -1,0 +1,6 @@
+Global Irradiation
+Day sin
+Day cos
+Year sin
+Year cos
+Wind Direction

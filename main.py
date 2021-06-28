@@ -14,13 +14,16 @@ import pickle
 
 def main():
     print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
-
     models = prepare_models(cfg_mod.models)
     # print_metrics(models)
     # plotting.multi_plot(cfg_mod.cities, cfg.errors['metric'])
     ################ Plot RMSE ###################
     # plotting.plot_metric(models, 'skewness').show()
     # plotting.plot_metric(models, 'rmse').show()
+    textfile = open("used_parameters.txt", "w")
+    for element in cfg_mod.models[0]['fields']:
+        textfile.write(element + "\n")
+    textfile.close()
     plot = plotting.plot_metric(models, 'mae')
     plot.savefig('output.png')
     plot.show()
@@ -32,7 +35,8 @@ def main():
 def prepare_models(models):
     for model in models:
         #df = pd.read_pickle('data/pickles/' + model['city'] + '.pickle')
-        df = pd.read_excel('data/Bordeaux.xlsx',sheet_name='Tabelle1')
+        string = 'data/' + model['city'] + '.xlsx'
+        df = pd.read_excel(string, sheet_name='Tabelle1')
         if 'Wind sin' in model['fields']:
             df = pp.change_wind_sin(df)
 
