@@ -42,6 +42,7 @@ usedfields_weekday_sin.append('weekday cos')
 usedfields_weekday_kart = usedfields_ohne_wind.copy()
 usedfields_weekday_kart.append('weekday x')
 usedfields_weekday_kart.append('weekday y')
+
 fields = dict(
         loadedfields=['Date', 'Temperature', 'Global Irradiation', 'Max incomming solar irradiation',
                       'Humidity', 'Pressure', 'Wind Speed', 'Rainfall', 'Wind Direction'],
@@ -106,6 +107,7 @@ fields = dict(
         #              'Day sin', 'Day cos', 'Year sin', 'Year cos'],
         )
 
+# vorhersage parameter
 label = 'Temperature'#'Global Irradiation'#'glo'
 
 training = dict(

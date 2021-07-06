@@ -7,9 +7,12 @@ import config_models as cfg_mod
 import visualization.plotting as plotting
 import tensorflow as tf
 
+import os
+
 import numpy as np
 import pandas as pd
 import pickle
+from datetime import date
 
 
 def main():
@@ -20,17 +23,24 @@ def main():
     ################ Plot RMSE ###################
     # plotting.plot_metric(models, 'skewness').show()
     # plotting.plot_metric(models, 'rmse').show()
-    textfile = open("used_parameters.txt", "w")
-    for element in cfg_mod.models[0]['fields']:
-        textfile.write(element + "\n")
-    textfile.close()
-    plot = plotting.plot_metric(models, 'mae')
-    plot.savefig('output.png')
-    plot.show()
-    # plotting.multi_plot_days(models, cfg.plotting['days'])
-    # for day in cfg.plotting['days']:
-    #     plotting.plot_forecast(models, day.year, day.month, day.day, day.hour).show()
 
+    datestring = date.today().strftime("%y-%m-%d")
+    for model in models:
+        current_dir = os.path.dirname(os.path.realpath('__file__'))
+        filename = os.path.join(current_dir, "results\\" + datestring + "_" + model["name"] + "_" +cfg.label + ".txt")
+        file = open(filename, "w")
+
+        for element in model['fields']:
+            file.write(element + "\n")
+
+        mae = model['mae']
+        for i in range(0, 24):
+            file.write(str(mae[i]) + "\n")
+        file.close()
+
+    plot = plotting.plot_metric(models, 'mae')
+    plot.savefig(datestring + "_" + model["name"] + "_" + cfg.label + '.png')
+    plot.show()
 
 def prepare_models(models):
     for model in models:
